@@ -84,7 +84,7 @@ function App() {
 
         <Router>
           <Home path="/" events={events} />
-          <SingleEvent re={userMessage} path="/event/*" />
+          <SingleEvent path="/event/*" re={userMessage} />
         </Router>
       </div>
     </div>
