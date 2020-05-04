@@ -1,10 +1,13 @@
 .App {
   text-align: center;
+  
+}
+.wrapper {
+  margin-top: 5vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  background-color: cornflowerblue;
 }
 
 @media (prefers-reduced-motion: no-preference) {

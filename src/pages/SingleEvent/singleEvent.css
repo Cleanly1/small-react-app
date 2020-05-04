@@ -1,0 +1,48 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+.event_page {
+	display: flex;
+	flex-flow: column nowrap;
+	width: 100vw;
+	height: 100vh;
+}
+
+.event_title {
+	text-align: center;
+	font-size: 1.1rem;
+	padding: 10px 10px;
+	background-color: whitesmoke;
+}
+
+.event_image_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+	width: 100%;
+	background-color: cornflowerblue;
+	overflow: hidden;
+}
+
+
+.event_image {
+	height: 100%;
+	
+}
+
+.event_info {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.event_date {
+
+}
+
+.event_desc {
+	margin: 10px;
+}

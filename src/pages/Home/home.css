@@ -1,0 +1,4 @@
+.event_gallery {
+	display: flex;
+	flex-flow: row wrap;
+  }
