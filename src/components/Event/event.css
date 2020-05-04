@@ -1,29 +1,32 @@
 .event_page_container {
-	width: 30vw;
-	height: 25vh;
-	display: flex;
-	flex-flow: column nowrap;
-	margin: 10px 1.5vw;
-	background-color: rgba(10,	120, 90, 0.4);
-	text-decoration: none;
+  width: 40vw;
+  height: 30vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin: 10px 5vw;
+  background-color: rgba(102, 153, 153, 0.9);
+  text-decoration: none;
+  box-shadow: 0px 2px 5px black;
 }
 
 .event_page_title {
-	font-size: 12px;
-	color: black;
+  text-align: center;
+  margin: 10px 5px;
+  font-size: 12px;
+  color: black;
+  text-overflow: clip;
 }
 
 .event_page_image_container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
-	width: 100%;
-	height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 15vh;
 }
 
-
 .event_page_image {
-	height: 100%;
-	
+  height: 100%;
 }

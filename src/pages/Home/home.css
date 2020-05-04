@@ -1,4 +1,5 @@
 .event_gallery {
-	display: flex;
-	flex-flow: row wrap;
-  }
+  display: flex;
+  flex-flow: row wrap;
+  padding: 20px 0;
+}

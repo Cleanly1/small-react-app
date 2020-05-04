@@ -1,62 +1,99 @@
-import React from 'react';
-import './singleEvent.css';
-import Button from '../../components/Button'
+import React from "react";
+import "./singleEvent.css";
+import { Redirect } from "@reach/router";
+import Button from "../../components/Button";
 
+function SingleEvent(props) {
+  const [event, setEvent] = React.useState(null);
+  const [venues, setVenues] = React.useState(null);
+  let image;
+  let arena;
 
-function SingleEvent(props){
-	const [event, setEvent] = React.useState(null);
-	let image;
+  React.useEffect(function () {
+    const eventId = window.location.pathname.split("/")[2];
+    fetch(
+      `${process.env.REACT_APP_DISCOVERY_URL}events/${eventId}.json?apikey=${process.env.REACT_APP_API_KEY}`
+    )
+      .then(function (data) {
+        return data.json();
+      })
+      .then(function (result) {
+        setVenues(result._embedded.venues);
+        setEvent([result]);
+      });
+  }, []);
 
-	React.useEffect(function(){
-		const eventId = window.location.pathname.split('/')[2];
-    	fetch(`${process.env.REACT_APP_DISCOVERY_URL}events/${eventId}.json?apikey=${process.env.REACT_APP_API_KEY}`)
-    		.then(function(data){
-      			return data.json()
-    		}).then(function(result){
-				console.log(result);
-				
-      			setEvent([result]);
-    		})
-	  }, [])
+  if (props.re) return <Redirect from="/event/*" to="/" noThrow />;
 
-	  event && fetch(`${process.env.REACT_APP_DISCOVERY_URL}attractions/${event[0]._embedded.attractions[0].id}.json?size=10&countryCode=se&apikey=${process.env.REACT_APP_API_KEY}`)
-    		.then(function(data){
-      			return data.json()
-    		}).then(function(result){
-      			console.log(result);
-				  
-    		})
-	  
-	  
-	return (
-	<div className="App">
-		{event && event.map(function(event, i){
-			
-			const date = event.dates.start.localDate;
-			if(window.innerWidth > 425){
-				image = event.images[2].url
-			}else {
-				image = event.images[1].url
-			}
+  return (
+    <div className="App">
+      {event &&
+        event.map(function (event, i) {
+          const date = event.dates.start.localDate;
+          if (window.innerWidth < 425) {
+            image = event.images[3].url;
+          } else {
+            image = event.images[1].url;
+          }
 
-			return (
-				<div className="event_page" key={i}>
-					<h1 className="event_title">{event.name}</h1>
-					<div className="event_image_container">
-						<img className="event_image" src={image} alt="Cover"/>
-					</div>
-					<div className="event_info">
-						<p>{date}</p>
-						<p className="event_desc">{event.description !== undefined ? event.description : 'No event description'}</p>
-						<Button href={event.url} > Buy Ticket Here</Button>
-					</div>
-				</div>
-			)
-		})}
-	</div>
-	);
+          if (event.seatmap !== undefined) {
+            arena = event.seatmap.staticUrl;
+          } else {
+            arena =
+              "https://media.ticketmaster.eu/sweden/e1bafbc9bc206f5a8899a475489ec101.jpg";
+          }
 
-	
+          return (
+            <div className="event_page" key={i}>
+              <h1 className="event_title">{event.name}</h1>
+              <div className="event_image_container">
+                <img className="event_image" src={image} alt="Cover" />
+              </div>
+              <div className="event_info">
+                <p>Date: {date}</p>
+                <p className="event_desc">
+                  {event.description !== undefined
+                    ? event.description
+                    : "No event description"}
+                </p>
+                {venues &&
+                  venues.map(function (venue, i) {
+                    return (
+                      <div key={i}>
+                        <ul className="event_venue">
+                          <li>Venue: {venue.name}</li>
+                          <li>
+                            Address:
+                            {venue.address === undefined
+                              ? " No address "
+                              : ` ${venue.address.line1}`}
+                            {venue.address === undefined
+                              ? ""
+                              : venue.address.line2}
+                          </li>
+                        </ul>
+                      </div>
+                    );
+                  })}
+                <div className="event_seatmap">
+                  <p className="event_seatmap_title">Arena layout:</p>
+                  <img
+                    className="event_seatmap_image"
+                    src={arena}
+                    alt="seatmap"
+                  />
+                </div>
+
+                <Button href={event.url}> Buy Ticket Here</Button>
+                <p className="event_button_text">
+                  (You will be taken to ticketmaster.se)
+                </p>
+              </div>
+            </div>
+          );
+        })}
+    </div>
+  );
 }
 
 export default SingleEvent;

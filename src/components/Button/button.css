@@ -1,5 +1,11 @@
 .button {
-	text-decoration: none;
-	color: whitesmoke;
-	padding: 10px 15px;
+  width: auto;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  background-color: #669999;
+  border-radius: 10px;
+  border: 2px solid whitesmoke;
 }

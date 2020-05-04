@@ -8,14 +8,12 @@ function nav(props){
 	return (
 		<nav>
 			<ul>
-				{children && children.map(function(child){
+				{children && children.map(function(child, i){
 					return(
 					child
 					)
 				})}
-				
 			</ul>
-			<input />
 		</nav>
 	)
 }

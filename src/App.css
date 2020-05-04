@@ -1,13 +1,22 @@
 .App {
   text-align: center;
-  
 }
 .wrapper {
   margin-top: 5vh;
+  padding: 12px 0;
+}
+
+.user_messages {
+  font-size: large;
+}
+
+.user_messages h1 {
+  padding: 10px 10px;
 }
 
 #root {
   background-color: cornflowerblue;
+  min-height: 95vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
