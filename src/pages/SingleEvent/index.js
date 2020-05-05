@@ -9,20 +9,23 @@ function SingleEvent(props) {
   let image;
   let arena;
 
-  React.useEffect(function () {
-    const eventId = window.location.pathname.split("/")[2];
-    fetch(
-      `${process.env.REACT_APP_DISCOVERY_URL}events/${eventId}.json?apikey=${process.env.REACT_APP_API_KEY}`
-    )
-      .then(function (data) {
-        return data.json();
-      })
-      .then(function (result) {
-        setVenues(result._embedded.venues);
-        setEvent([result]);
-      });
-  }, []);
-
+  React.useEffect(
+    function () {
+      const eventId = props.id;
+      fetch(
+        `${process.env.REACT_APP_DISCOVERY_URL}events/${eventId}.json?apikey=${process.env.REACT_APP_API_KEY}`
+      )
+        .then(function (data) {
+          return data.json();
+        })
+        .then(function (result) {
+          setVenues(result._embedded.venues);
+          setEvent([result]);
+        });
+    },
+    [props.id]
+  );
+  // redirects user if you search
   if (props.re) return <Redirect from="/event/*" to="/" noThrow />;
 
   return (
