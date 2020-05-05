@@ -31,7 +31,7 @@ function SingleEvent(props) {
         event.map(function (event, i) {
           const date = event.dates.start.localDate;
           if (window.innerWidth < 425) {
-            image = event.images[3].url;
+            image = event.images[2].url;
           } else {
             image = event.images[1].url;
           }
@@ -50,7 +50,7 @@ function SingleEvent(props) {
                 <img className="event_image" src={image} alt="Cover" />
               </div>
               <div className="event_info">
-                <p>Date: {date}</p>
+                <p>Start-Date: {date}</p>
                 <p className="event_desc">
                   {event.description !== undefined
                     ? event.description
@@ -75,6 +75,12 @@ function SingleEvent(props) {
                       </div>
                     );
                   })}
+
+                <Button href={event.url}> Buy Ticket Here</Button>
+                <p className="event_button_text">
+                  (You will be taken to ticketmaster.se)
+                </p>
+
                 <div className="event_seatmap">
                   <p className="event_seatmap_title">Arena layout:</p>
                   <img
@@ -83,11 +89,6 @@ function SingleEvent(props) {
                     alt="seatmap"
                   />
                 </div>
-
-                <Button href={event.url}> Buy Ticket Here</Button>
-                <p className="event_button_text">
-                  (You will be taken to ticketmaster.se)
-                </p>
               </div>
             </div>
           );

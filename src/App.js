@@ -6,7 +6,7 @@ import Nav from "./components/Nav";
 import "./App.css";
 
 function App() {
-  const [events, setEvents] = React.useState();
+  const [events, setEvents] = React.useState(null);
   const [searchQuery, setSearchQuery] = React.useState("");
   const [userMessage, setUserMessage] = React.useState(null);
 
@@ -58,6 +58,7 @@ function App() {
   return (
     <div>
       <Nav>
+        <div className="site_name">SES</div>
         <Link
           to="/"
           onClick={function () {
@@ -84,7 +85,7 @@ function App() {
 
         <Router>
           <Home path="/" events={events} />
-          <SingleEvent path="*/event/*" re={userMessage} />
+          <SingleEvent path="/event/*" re={userMessage} />
         </Router>
       </div>
     </div>

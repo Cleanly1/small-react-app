@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+
+.site_name {
+  font-weight: bolder;
+}
 .wrapper {
   margin-top: 5vh;
   padding: 12px 0;
