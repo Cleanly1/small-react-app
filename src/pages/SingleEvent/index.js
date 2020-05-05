@@ -30,7 +30,7 @@ function SingleEvent(props) {
       {event &&
         event.map(function (event, i) {
           const date = event.dates.start.localDate;
-          image = event.images[1].url;
+          image = event.images[0].url;
 
           if (event.seatmap !== undefined) {
             arena = event.seatmap.staticUrl;
